@@ -1,4 +1,4 @@
-package Arrays;
+package Arryas;
 
 import Arryas.Array;
 
