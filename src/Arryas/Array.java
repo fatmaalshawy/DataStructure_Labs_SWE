@@ -23,23 +23,43 @@ public class Array {
 
     }
 
-
     public void input(int[]a){
         System.out.println("enter  "+a.length+ " numbers:");
         for(int i=0; i<a.length;i++)
             a[i]=scanner.nextInt();
     }
     public  void update(int []a, int index, int nvalue){
-        a[index]=nvalue;
+        if(index<0 ||  index >=a.length)
+            System.out.println("Index Does not exists");
+        else
+         a[index]=nvalue;
+    }
+     public  void delete(int []a, int index) {
+         if (index < 0 || index >= a.length)
+             System.out.println("Index Does not exists");
+         else
+             a[index] = 0;
+     }
+     public void ShiftLeft_Delete(int []a,int index){
+        for(int i=index;i<a.length-1;i++)
+            a[i]=a[i+1];
+        a[a.length-1]=Integer.MIN_VALUE;
+    }
+    public int LinearSearch(int[]a,int value){
+        for(int i=0 ;i<a.length;i++){
+            if(value==a[i])
+                return  i;
+        }
+        return -1;
+    }
+
+
+
+
+
 
     }
-    public  void delete(int []a, int index){
-        a[index]=0;
-
-    }
 
 
 
 
-
-}
