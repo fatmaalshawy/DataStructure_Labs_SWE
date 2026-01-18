@@ -1,8 +1,6 @@
 package CircularLinkedList;
 
 
-//import SinglyLinkedList.Node;
-
 public class CircularLinkedList<E> {
     private Node<E> tail;
     private int size;
@@ -11,12 +9,14 @@ public class CircularLinkedList<E> {
         tail=null;
         size=0;
     }
-    public int size() {
+    public int size(){
         return size;
     }
-    public boolean isEmpty() {
-        return size() == 0;
+    public boolean isEmpty(){
+        return size()==0;
     }
+
+    //algorithms
     public void addFirst(E data){
         if(isEmpty()){
             Node<E> newNode=new Node(data,null);
@@ -27,25 +27,23 @@ public class CircularLinkedList<E> {
             Node<E> newNode=new Node(data,tail.getNext());
             tail.setNext(newNode);
         }
+
         size++;
     }
     public void addLast(E data){
         addFirst(data);
         tail=tail.getNext();
-
     }
     public E getFirst(){
-        if (isEmpty())return null;
         return tail.getNext().getData();
     }
     public E getLast(){
-        if(isEmpty())return null;
         return tail.getData();
     }
     public E removeFirst(){
-        if(isEmpty())return null;
-        E delete=tail.getNext().getData();
-        if(tail==tail.getNext()){
+        if (isEmpty())return null;
+        E delete =tail.getNext().getData();
+        if (tail==tail.getNext()){
             tail=null;
         }
         else {
@@ -54,11 +52,35 @@ public class CircularLinkedList<E> {
         size--;
         return delete;
     }
+    public E removeLast(){
+        if (isEmpty())return null;
+        E delete =tail.getData();
+        if (tail==tail.getNext()){
+            tail=null;
+        }
+        else {
+            Node<E>temp=tail.getNext();
+            while (temp.getNext()!=tail){
+                temp=temp.getNext();
+            }temp.setNext(tail.getNext());
+            tail=temp;
+        }
+        size--;
+        return delete;
+    }
+    public void display(){
+        System.out.println("The elements or the list are:");
+        Node<E>temp=tail.getNext();
+        do {
+            System.out.print(temp.getData()+"--->");
+            temp=temp.getNext();
+        }while (temp!=tail.getNext());
+        System.out.println("go first("+temp.getData()+")");
+    }
 
-
-    class Node<E> {
+    class Node<E>{
         private E data;
-        public Node<E> next;
+        private Node<E> next;
 
         public Node(E data, Node<E> next) {
             this.data = data;
@@ -80,8 +102,6 @@ public class CircularLinkedList<E> {
         public void setNext(Node<E> next) {
             this.next = next;
         }
-
-
     }
 
 }
